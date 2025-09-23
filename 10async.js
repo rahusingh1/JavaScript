@@ -88,3 +88,23 @@ findData()
     .catch((err)=>{
         console.log(err);
     })
+
+
+function fetchExample(){
+    fetch("Https://jsonplaceholder.typicode.com/users")
+    .then((response) => {
+        if(response.ok){
+            return response.json();
+        }
+        else{
+            throw new Error("Failed to fetch user data, Response status: " + response.status);
+        }
+    })
+    .then((Data)=>{
+        console.log(Data);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+fetchExample();
