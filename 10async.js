@@ -89,7 +89,7 @@ findData()
         console.log(err);
     })
 
-
+/* Fetch API */
 function fetchExample(){
     fetch("Https://jsonplaceholder.typicode.com/users")
     .then((response) => {
@@ -108,3 +108,41 @@ function fetchExample(){
     })
 }
 fetchExample();
+
+/* Promise Chaining */
+const promise1 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve("Promise1 is resolved");
+        
+    }, 2000)
+})
+
+const promise2 = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        reject("Promise2 is rejected");
+        
+    }, 3000)
+})
+
+const promise3 = new Promise((resolve, reject)=>{
+    resolve("Promise3 is resolved");
+}, 4000)
+
+promise1
+.then((result)=>{
+    console.log(result);
+    return promise2
+})
+.then((result)=>{
+    console.log(result);
+    return promise3;
+})
+.then((result)=>{
+    console.log(result);
+    console.log("All Promises are resolved.");
+})
+.catch((err1)=>{
+    console.log(err1);
+    console.log("you are in the catch block.");
+})
+
