@@ -89,25 +89,6 @@ findData()
         console.log(err);
     })
 
-/* Fetch API */
-function fetchExample(){
-    fetch("Https://jsonplaceholder.typicode.com/users")
-    .then((response) => {
-        if(response.ok){
-            return response.json();
-        }
-        else{
-            throw new Error("Failed to fetch user data, Response status: " + response.status);
-        }
-    })
-    .then((Data)=>{
-        console.log(Data);
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
-}
-fetchExample();
 
 /* Promise Chaining */
 const promise1 = new Promise((resolve, reject)=>{
@@ -146,3 +127,56 @@ promise1
     console.log("you are in the catch block.");
 })
 
+/* Fetch API */
+function fetchExample(){
+    fetch("Https://jsonplaceholder.typicode.com/users")
+    .then((response) => {
+        if(response.ok){
+            return response.json();
+        }
+        else{
+            throw new Error("Failed to fetch user data, Response status: " + response.status);
+        }
+    })
+    .then((Data)=>{
+        console.log(Data);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+fetchExample();
+
+/* fetch API post example */
+function postExample(){
+    const data = {
+        userId: 15,
+        id: 15,
+        title: "Test title API'",
+        completed: false
+    };
+
+    fetch("https://jsonplaceholder.typicode.com/todos", {
+        method: 'POST',
+        header: {"Content-Type": "Application/json"},
+        body: JSON.stringify(data)
+    })
+    .then((response)=>{
+        if(response.ok){
+            console.log("Post Success");
+            return response.json();
+        }
+        else{
+            throw new Error("Failed to post data"+ response.status);
+        }
+    })
+    .then((resultR)=>{
+        console.log("Inside the second then block to print the json");
+        console.log(resultR)
+    })
+    .catch((error2)=>{
+        console.log(error2);
+    })
+}
+
+postExample();
