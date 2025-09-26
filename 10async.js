@@ -70,7 +70,7 @@ fetchData()
 function findData(){
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
-            byte = 5
+            const byte = 5
             if(byte<0){
                 resolve(byte)
             }
@@ -139,7 +139,7 @@ function fetchExample(){
         }
     })
     .then((Data)=>{
-        console.log(Data);
+        console.log(Data[0]);  // print the first index value only not the whole json.
     })
     .catch((error)=>{
         console.log(error);
@@ -180,3 +180,33 @@ function postExample(){
 }
 
 postExample();
+
+/* Async Await */
+// async keyword tell this function always return a promise.
+// await is the replacement of .then part
+// From this
+let promise4 = new Promise((resolve, reject)=>{
+    resolve("Hello, Promise example.");
+})
+
+promise4.then((resolve1)=>{
+    console.log(resolve1);
+})
+.catch((error1)=>{
+    console.log(error1);
+})
+
+// To this
+async function testFunc(){
+    return "Hello World! from Async Await."
+}
+try{
+    let result1 = await testFunc();
+    console.log(result1);
+}
+catch(error2){
+    console.log(error2);
+}
+
+
+
